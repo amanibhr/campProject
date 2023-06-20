@@ -60,5 +60,19 @@ public class ForumServiceImpl implements ForumService{
 
     }
 
+    @Override
+    public Long addLikesForum(Long idForm) {
+        Forum forum=forumRepository.findById(idForm).get();
+        Long likes=forum.getLikes()+1;
+        return likes;
+    }
+
+    @Override
+    public Long addDisLikesForum(Long idForm) {
+        Forum forum=forumRepository.findById(idForm).get();
+        Long likes=forum.getDislikes()+1;
+        return likes;
+    }
+
 
 }

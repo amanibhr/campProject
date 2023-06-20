@@ -17,6 +17,8 @@ public interface ForumService {
     void deleteForum(Long idForum);
 
     void assignFeedbackToForum(Long idForm,Long idFeedback);
+    Long addLikesForum(Long idForm);
+    Long addDisLikesForum(Long idForm);
 
 }
 

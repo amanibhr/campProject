@@ -49,6 +49,19 @@ public class FeedbackServiceImpl implements FeedbackService{
         feedbackRepository.deleteById(idFeedback);
 
     }
+    @Override
+    public Long addLikesFeedback(Long idFeedback) {
+        Feedback feedback=feedbackRepository.findById(idFeedback).get();
+        Long likes=feedback.getLikes()+1;
+        return likes;
+    }
+
+    @Override
+    public Long addDisLikesFeedback(Long idFeedback) {
+        Feedback feedback=feedbackRepository.findById(idFeedback).get();
+        Long likes=feedback.getDislikes()+1;
+        return likes;
+    }
 
 
 }
