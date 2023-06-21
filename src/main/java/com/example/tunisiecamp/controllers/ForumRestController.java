@@ -48,7 +48,16 @@ public class ForumRestController {
          forumService.assignFeedbackToForum( forumId,  idFeedback);
     }
 
-
+    @PostMapping("/add-like-Forum/{ForumId}")
+    public Forum addLikeForumAPI(@PathVariable("ForumkId") Long forumId) {
+        Long likes = forumService.addLikesForum(forumId);
+        return forumService.retrieveForum(forumId);
+    }
+    @PostMapping("/add-dislike-Forum/{ForumId}")
+    public Forum addDisLikeForumAPI(@PathVariable("ForumkId") Long forumId) {
+        Long likes = forumService.addLikesForum(forumId);
+        return forumService.retrieveForum(forumId);
+    }
     }
 
 

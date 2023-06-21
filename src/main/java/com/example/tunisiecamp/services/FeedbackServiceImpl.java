@@ -24,6 +24,8 @@ public class FeedbackServiceImpl implements FeedbackService{
     @Override
     public  Feedback addFeedback(Feedback e) {
         e.setDate(new Date());
+        e.setLikes(0L);
+        e.setDislikes(0L);
         return feedbackRepository.save(e);
     }
 
@@ -32,9 +34,6 @@ public class FeedbackServiceImpl implements FeedbackService{
         Feedback feedback1 = feedbackRepository.findById(idFeedback).get();
         feedback1.setCommentaire(feedback.getCommentaire());
         feedback1.setSentiment(feedback.getSentiment());
-      //  feedback1.setNbEtoile(feedback.getNbEtoile());
-        feedback1.setSentiment(feedback.getSentiment());
-
         return feedbackRepository.save(feedback1);
     }
 

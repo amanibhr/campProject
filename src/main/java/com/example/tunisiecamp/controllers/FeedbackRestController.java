@@ -28,9 +28,10 @@ public class FeedbackRestController {
         return feedbackService.retrieveFeedback(feedbackId);
     }
     // http://localhost:8089/kaddem/etudiant/add-etudiant
-    @PostMapping("/add-Feedback")
-    public Feedback addFeedbackAPI(@RequestBody Feedback e) {
+    @PostMapping("/add-Feedback/{ForumId}")
+    public Feedback addFeedbackAPI(@RequestBody Feedback e,@PathVariable("ForumId") Long ForumId) {
         Feedback feedback = feedbackService.addFeedback(e);
+       forumService.assignFeedbackToForum(ForumId, feedback.getId());
         return feedback;
     }
     // http://localhost:8089/kaddem/etudiant/update-etudiant
@@ -45,8 +46,16 @@ public class FeedbackRestController {
     public void deleteFeedback(@PathVariable("feedbackId") Long feedbackId) {
         feedbackService.deleteFeedback(feedbackId);
     }
-
-
+    @PostMapping("/add-like-Feedback/{feedbackId}")
+    public Feedback addLikeFeedbackAPI(@PathVariable("feedbackId") Long feedbackId) {
+        Long likes = feedbackService.addLikesFeedback(feedbackId);
+        return feedbackService.retrieveFeedback(feedbackId);
+    }
+    @PostMapping("/add-dislike-Feedback/{feedbackId}")
+    public Feedback addDisLikeFeedbackAPI(@PathVariable("feedbackId") Long feedbackId) {
+        Long dislikes = feedbackService.addDisLikesFeedback(feedbackId);
+        return feedbackService.retrieveFeedback(feedbackId);
+    }
     }
 
 

@@ -46,8 +46,7 @@ public class Feedback implements Serializable {
     @Column(name = "dislikes")
     private Long dislikes;
 
-    //@ManyToOne
-    //private Forum forum;
+
 
 
 

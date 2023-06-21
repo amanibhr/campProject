@@ -39,7 +39,8 @@ public class Forum implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    //@Column(name = "tags")
+    @Column(name = "tags")
+     private String tags;
     //private Set<String> tags;
 
     @Column(name = "likes")
