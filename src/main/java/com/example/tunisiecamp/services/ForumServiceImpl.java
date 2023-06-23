@@ -76,14 +76,18 @@ public class ForumServiceImpl implements ForumService {
     public Long addLikesForum(Long idForm) {
         Forum forum = forumRepository.findById(idForm).get();
         Long likes = forum.getLikes() + 1;
+        forum.setLikes(likes);
+        forumRepository.save(forum);
         return likes;
     }
 
     @Override
     public Long addDisLikesForum(Long idForm) {
         Forum forum = forumRepository.findById(idForm).get();
-        Long likes = forum.getDislikes() + 1;
-        return likes;
+        Long dislikes = forum.getDislikes() + 1;
+        forum.setDislikes(dislikes);
+        forumRepository.save(forum);
+        return dislikes;
     }
 
     private File loadScriptFromResources(String scriptName) throws IOException {
@@ -96,8 +100,8 @@ public class ForumServiceImpl implements ForumService {
         }
         return null;
     }
-    @Scheduled(cron = "*/30 * * * * *")
-    //@Scheduled(cron = "0 0 * * * *") // Schedule it to run every hour
+    //@Scheduled(cron = "*/30 * * * * *")
+    @Scheduled(cron = "0 0 * * * *") // Schedule it to run every hour
     public void runPythonScript() {
         try {
             // Provide the correct Python interpreter command
